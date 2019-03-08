@@ -14,7 +14,7 @@ class MuaTestCase(unittest.TestCase):
         cls.driver.quit()
     
     def setUp(self):
-        self.driver.get("http://157.230.152.226:8080/mua/#!/")
+        self.driver.get("http://134.209.63.241:8080/mua/#!/")
         self.driver.maximize_window()
     
     def tearDown(self):
@@ -23,13 +23,13 @@ class MuaTestCase(unittest.TestCase):
     def test_case_01(self):
         try:
             print("***** Test Case 01 - Create new Category *****")
-            self.driver.get("http://157.230.152.226:8080/mua/#!/ejemplos")
+            self.driver.get("http://134.209.63.241:8080/mua/#!/ejemplos")
             self.driver.find_element_by_xpath("//i[@ng-click='setGuardar()']").click()
             time.sleep(5)
             self.driver.find_element_by_xpath("//input[@ng-model='formSaveCategory.nombre']").send_keys("Test01")
             self.driver.find_element_by_xpath("//input[@ng-model='formSaveCategory.nombre']").send_keys(u'\ue007')
             self.driver.get_screenshot_as_file("screenshots/TestCase01_01_NewCategory.png")
-            self.driver.get("http://157.230.152.226:8080/mua/#!")
+            self.driver.get("http://134.209.63.241:8080/mua/#!")
             self.driver.get_screenshot_as_file("screenshots/TestCase01_02_ReturnHome.png")
             self.driver.find_element_by_xpath("//select[@ng-model='busqueda.categoria']//option[@value=Test01']").click()
             self.driver.get_screenshot_as_file("screenshots/TestCase01_03_ViewCategories.png")
@@ -60,7 +60,7 @@ class MuaTestCase(unittest.TestCase):
     def test_case_04(self):
         try:
             print("***** Test Case 04 - View Categories  *****")
-            self.driver.get("http://157.230.152.226:8080/mua/#!/ejemplos")
+            self.driver.get("http://134.209.63.241:8080/mua/#!/ejemplos")
             self.driver.get_screenshot_as_file("screenshots/TestCase04_01_AccessCategoryPage.png")
             rows = len(self.driver.find_elements_by_xpath("//table[@class='table table-striped']//tbody//tr"))
             for row in range(rows+1):
@@ -76,7 +76,7 @@ class MuaTestCase(unittest.TestCase):
     def test_case_05(self):
         try:
             print("***** Test Case 05 - Create new Post attaching PNG image *****")
-            self.driver.get("http://157.230.152.226:8080/mua/#!/nuevoPost")
+            self.driver.get("http://134.209.63.241:8080/mua/#!/nuevoPost")
             self.driver.find_element_by_xpath("//input[@ng-model='nuevoPost.titulo']").send_keys("Automatic Post 1")
             self.driver.find_element_by_xpath("//select[@ng-model='currentCategory']//option[@label='Test01']").click()
             self.driver.find_element_by_xpath("//button[@class='btn btn-primary']").click()      
@@ -93,7 +93,7 @@ class MuaTestCase(unittest.TestCase):
     def test_case_06(self):
         try:
             print("***** Test Case 06 - Create new Post attaching BMP image *****")
-            self.driver.get("http://157.230.152.226:8080/mua/#!/nuevoPost")
+            self.driver.get("http://134.209.63.241:8080/mua/#!/nuevoPost")
             self.driver.find_element_by_xpath("//input[@ng-model='nuevoPost.titulo']").send_keys("Automatic Post 2")
             self.driver.find_element_by_xpath("//select[@ng-model='currentCategory']//option[@label='Test01']").click()
             self.driver.find_element_by_xpath("//button[@class='btn btn-primary']").click()        
@@ -110,7 +110,7 @@ class MuaTestCase(unittest.TestCase):
     def test_case_07(self):
         try:
             print("***** Test Case 07 - Create new Post attaching JPEG image *****")
-            self.driver.get("http://157.230.152.226:8080/mua/#!/nuevoPost")
+            self.driver.get("http://134.209.63.241:8080/mua/#!/nuevoPost")
             self.driver.find_element_by_xpath("//input[@ng-model='nuevoPost.titulo']").send_keys("Automatic Post 3")
             self.driver.find_element_by_xpath("//select[@ng-model='currentCategory']//option[@label='Test01'']").click()
             self.driver.find_element_by_xpath("//button[@class='btn btn-primary']").click()         
@@ -302,7 +302,7 @@ class MuaTestCase(unittest.TestCase):
     def test_case_18(self):
         try:
             print("***** Test Case 18 - Edit Categories *****")
-            self.driver.get("http://157.230.152.226:8080/mua/#!/ejemplos")
+            self.driver.get("http://134.209.63.241:8080/mua/#!/ejemplos")
             self.driver.get_screenshot_as_file("screenshots/TestCase18_01_AccessCategories.png") 
             time.sleep(5) 
             rows = len(self.driver.find_elements_by_xpath("//table[@class='table table-striped']//tbody//tr"))
@@ -323,7 +323,7 @@ class MuaTestCase(unittest.TestCase):
         try:
             #By the moment this feature is blocked, we aren't not able to delete assigned Post
             print("***** Test Case 19 - Delete Categories *****")
-            self.driver.get("http://157.230.152.226:8080/mua/#!/ejemplos")
+            self.driver.get("http://134.209.63.241:8080/mua/#!/ejemplos")
             self.driver.get_screenshot_as_file("screenshots/TestCase19_01_AccessCategories.png") 
             time.sleep(5) 
             rows = len(self.driver.find_elements_by_xpath("//table[@class='table table-striped']//tbody//tr"))
@@ -341,7 +341,7 @@ class MuaTestCase(unittest.TestCase):
     def test_case_20(self):
         try:
             print("***** Test Case 20 - Create New Tags *****")
-            self.driver.get("http://157.230.152.226:8080/mua/#!/tags")
+            self.driver.get("http://134.209.63.241:8080/mua/#!/tags")
             self.driver.get_screenshot_as_file("screenshots/TestCase20_01_AccessTagsPage.png") 
             self.driver.find_element_by_xpath("//i[@ng-click='setGuardar()']").click()             
             self.driver.find_element_by_xpath("//input[@ng-model='formSaveTags.nombre']").send_keys("Test01")
@@ -360,7 +360,7 @@ class MuaTestCase(unittest.TestCase):
     def test_case_21(self):
         try:
             print("***** Test Case 21 - Modify Tags *****")
-            self.driver.get("http://157.230.152.226:8080/mua/#!/tags")
+            self.driver.get("http://134.209.63.241:8080/mua/#!/tags")
             time.sleep(5)
             #self.driver.execute_script("window.scrollTo(0,document.body.scrollHeight);")
             self.driver.get_screenshot_as_file("screenshots/TestCase21_01_TagsRows.png") 
