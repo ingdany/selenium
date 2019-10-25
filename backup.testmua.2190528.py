@@ -38,7 +38,6 @@ class MuaTestCase(unittest.TestCase):
             return False
         return True
     
-    
     def testcase02_create_new_tag(self):
         try:
             print ("***** Test Case 02 - Create New Tags *****")
@@ -78,15 +77,25 @@ class MuaTestCase(unittest.TestCase):
     def testcase04_update_post(self):
         try:
             print ("***** Test Case 04 - Edit Post, Update General Information, add new image *****")
-            WebDriverWait(self.driver,10).until(EC.presence_of_element_located((By.XPATH,"//div[@class='card-columns']//div[1]//div[1]//div[1]/a[1]//i[1]"))).click()            
-            time.sleep(2)
-            WebDriverWait(self.driver,10).until(EC.presence_of_element_located((By.XPATH,"//ng-select[1]"))).click()
-            WebDriverWait(self.driver,10).until(EC.presence_of_element_located((By.XPATH,"//input[@role='combobox' and @type='text']"))).send_keys("Oceania")
-            WebDriverWait(self.driver,10).until(EC.presence_of_element_located((By.XPATH,"//input[@role='combobox' and @type='text']"))).send_keys(Keys.ENTER)           
-            WebDriverWait(self.driver,10).until(EC.presence_of_element_located((By.XPATH,"//input[@role='combobox' and @type='text']"))).send_keys("Australia")
-            WebDriverWait(self.driver,10).until(EC.presence_of_element_located((By.XPATH,"//input[@role='combobox' and @type='text']"))).send_keys(Keys.ENTER)           
-            WebDriverWait(self.driver,10).until(EC.presence_of_element_located((By.XPATH,"//button[@class='btn btn-primary' and @type='submit']"))).click()           
-            self.driver.get_screenshot_as_file("screenshots/TestCase04_01_HomePage.png")        
+            WebDriverWait(self.driver,10).until(EC.presence_of_element_located((By.XPATH,"//select[@ng-model='busqueda.categoria']//option[@value='Automatic Category']"))).click() 
+            self.driver.get_screenshot_as_file("screenshots/TestCase04_00_FilterPost.png")
+            wait = WebDriverWait(self.driver, 10)
+            self.driver.find_element_by_xpath("//div[@ng-model='tag']").click()
+            wait.until(EC.visibility_of_element_located((By.XPATH, "//*[contains(text(), 'Automatic Tag')]"))).click()            
+            WebDriverWait(self.driver,10).until(EC.presence_of_element_located((By.XPATH,"//div[@class='container']//div[1]//div[2]//div[4]//a[2]"))).click()
+            self.driver.get_screenshot_as_file("screenshots/TestCase04_01_GoPost.png")
+            self.driver.find_element_by_id("titulo").clear()
+            self.driver.find_element_by_id("titulo").send_keys("Update Automatic Post")
+            self.driver.find_element_by_id("descripcion").clear()
+            self.driver.find_element_by_id("descripcion").send_keys("Morbi volutpat sapien sollicitudin suscipit venenatis. Nulla posuere orci ac vulputate sollicitudin. Cras eu fringilla sem, scelerisque bibendum libero. Aenean at magna dolor. Nullam semper posuere neque ac scelerisque. Aenean leo lectus, lacinia sit amet purus vel, feugiat pulvinar nisl. Nulla dictum porta odio, quis molestie orci molestie vitae. Maecenas interdum dolor eget purus pharetra egestas. Aliquam sed aliquam turpis. Donec ac quam quis elit venenatis maximus. Maecenas vitae nunc id velit pulvinar mattis at non diam. Morbi porta neque sed accumsan semper.")            
+            self.driver.get_screenshot_as_file("screenshots/TestCase04_02_EditPost.png")
+            WebDriverWait(self.driver,10).until(EC.presence_of_element_located((By.XPATH,"//div[@class='container']//div[1]//div[1]//div[3]//div[1]//div[1]"))).click()
+            self.driver.find_element_by_name("file").send_keys("C:\\Repository\\automatedtest\\screenshots\\hqdefault.jpg")
+            self.driver.get_screenshot_as_file("screenshots/TestCase04_03_OpenImage.png")
+            WebDriverWait(self.driver,10).until(EC.presence_of_element_located((By.XPATH,"//input[@type='submit' and @value='Subir imagen']"))).click()
+            self.driver.get_screenshot_as_file("screenshots/TestCase04_04_SavePost.png")
+            WebDriverWait(self.driver,10).until(EC.presence_of_element_located((By.XPATH,"//div[@class='row']//a[1]//button[@class='btn btn-primary']"))).click()
+            self.driver.get_screenshot_as_file("screenshots/TestCase04_05_HomePage.png")        
         except NoSuchElementException as e:
             print (e)
             return False
@@ -95,7 +104,15 @@ class MuaTestCase(unittest.TestCase):
     def testcase05_view_images(self):
         try:
             print("***** Test Case 05 - Search posts and view images *****")
-            
+            WebDriverWait(self.driver,10).until(EC.presence_of_element_located((By.XPATH,"//select[@id='wgtmsr']//option[@value='Moda Mexico']"))).click()
+            WebDriverWait(self.driver,10).until(EC.presence_of_element_located((By.XPATH,"//app-root[1]//div[2]//div[1]//div[1]//div[1]//div[1]//div[1]//div[2]"))).click()
+            WebDriverWait(self.driver,10).until(EC.presence_of_element_located((By.XPATH,"//table[@class='mat-calendar-table']//tbody[1]//tr[3]//td[4]//div[1]"))).click()
+            WebDriverWait(self.driver,10).until(EC.presence_of_element_located((By.XPATH,"//mat-form-field[2]//div[1]//div[1]//div[2]"))).click()
+            WebDriverWait(self.driver,10).until(EC.presence_of_element_located((By.XPATH,"//table[@class='mat-calendar-table']//tbody[1]//tr[5]//td[3]//div[1]"))).click()
+            WebDriverWait(self.driver,10).until(EC.presence_of_element_located((By.XPATH,"//mat-form-field[2]//div[1]//div[1]//div[2]"))).click()
+            WebDriverWait(self.driver,10).until(EC.presence_of_element_located((By.XPATH,"//table[@class='mat-calendar-table']//tbody[1]//tr[5]//td[2]//div[1]"))).click()
+            WebDriverWait(self.driver,10).until(EC.presence_of_element_located((By.XPATH,"//input[@role='combobox']"))).click()
+            WebDriverWait(self.driver,10).until(EC.presence_of_element_located((By.XPATH,"//ng-dropdown-panel[@class='ng-dropdown-panel ng-select-multiple ng-star-inserted ng-select-bottom']//div[1]//div[2]//div[1]"))).click()
             self.driver.get_screenshot_as_file("screenshots/TestCase05_01_SearchCategory.png")
         except NoSuchElementException as e:
             print (e)
@@ -105,7 +122,16 @@ class MuaTestCase(unittest.TestCase):
     def testcase06_change_default_image(self):
         try:
             print("***** Test Case 06 - Change Default Image in Post *****")            
-           
+            self.driver.find_element_by_xpath("//select[@ng-model='busqueda.categoria']//option[@value='Automatic Category']").click()
+            self.driver.find_element_by_xpath("//div[@class='container']//div[1]//div[2]//div[4]//a[2]").click()
+            self.driver.get_screenshot_as_file("screenshots/TestCase06_01_ShowPost.png") 
+            WebDriverWait(self.driver,60).until(EC.presence_of_element_located((By.XPATH,"//div[@class='container']//div[1]//div[1]//div[2]//div[2]//i[1]"))).click()            
+            self.driver.get_screenshot_as_file("screenshots/TestCase06_02_ChangeDefault.png")            
+            WebDriverWait(self.driver,60).until(EC.presence_of_element_located((By.XPATH,"//button[@class='swal-button swal-button--confirm swal-button--danger']"))).click()
+            self.driver.get_screenshot_as_file("screenshots/TestCase06_03_ConfirmChangeDefault.png")            
+            WebDriverWait(self.driver,60).until(EC.presence_of_element_located((By.XPATH,"//button[@class='swal-button swal-button--confirm']"))).click()
+            self.driver.get_screenshot_as_file("screenshots/TestCase06_04_CheckCurrentImages.png")
+            WebDriverWait(self.driver,10).until(EC.presence_of_element_located((By.XPATH,"//div[@class='row']//a[1]//button[@class='btn btn-primary']"))).click()
             self.driver.get_screenshot_as_file("screenshots/TestCase06_05_HomePage.png")
         except NoSuchElementException as e:
             print(e)
@@ -116,7 +142,11 @@ class MuaTestCase(unittest.TestCase):
         try:
             #By the moment this feature is unable
             print("***** Test Case 07 - Delete Posts *****")
-                     
+            self.driver.find_element_by_xpath("//select[@ng-model='busqueda.categoria']//option[@value='Automatic Category']").click()
+            self.driver.get_screenshot_as_file("screenshots/TestCase07_01_ViewPost.png")
+            self.driver.find_element_by_xpath("//div[@class='container']//div[1]//div[2]//div[4]//a[3]//i[1]").click()
+            self.driver.get_screenshot_as_file("screenshots/TestCase07_02_ConfirmDeletePost.png")            
+            WebDriverWait(self.driver,60).until(EC.presence_of_element_located((By.XPATH,"//div[@class='swal-overlay swal-overlay--show-modal']//div[1]//div[2]//div[2]//button[1]"))).click()            
             self.driver.get_screenshot_as_file("screenshots/TestCase07_03_DeletePost.png")
         except NoSuchElementException as e:
             print (e)
@@ -149,6 +179,7 @@ class MuaTestCase(unittest.TestCase):
         try:
             #By the moment this feature is blocked, we aren't not able to delete assigned Post
             print("***** Test Case 09 - Delete Categories *****")
+            #self.driver.get("http://134.209.63.241:8080/mua/#!/ejemplos")
             WebDriverWait(self.driver,10).until(EC.presence_of_element_located((By.XPATH,"//div[@id='navbarNav']//ul//li[2]//a[1]"))).click()
             self.driver.get_screenshot_as_file("screenshots/TestCase09_01_AccessCategories.png") 
             time.sleep(5) 
@@ -170,6 +201,7 @@ class MuaTestCase(unittest.TestCase):
     def testcase10_edit_tag(self):
         try:
             print("***** Test Case 10 - Edit Tag *****")
+            #self.driver.get("http://134.209.63.241:8080/mua/#!/tags")
             WebDriverWait(self.driver,10).until(EC.presence_of_element_located((By.XPATH,"//div[@id='navbarNav']//ul//li[4]//a[1]"))).click()
             time.sleep(5)
             #self.driver.execute_script("window.scrollTo(0,document.body.scrollHeight);")
@@ -222,8 +254,14 @@ class MuaTestCase(unittest.TestCase):
     def testcase12_login(self):
         try:
             print("***** Test Case 12 - Login *****")
-           
-            self.driver.get_screenshot_as_file("screenshots/TestCase12_01_CheckLogin.png") 
+            self.driver.get("http://134.209.63.241:8080/mua/#!/tags")
+            self.driver.get_screenshot_as_file("screenshots/TestCase12_01_GoTagsPage.png") 
+            self.driver.find_element_by_xpath("//input[@ng-model='usuario.name']").send_keys("admin")
+            self.driver.find_element_by_xpath("//input[@ng-model='usuario.password']").send_keys("admin")
+            self.driver.get_screenshot_as_file("screenshots/TestCase12_02_TypeLogin.png") 
+            WebDriverWait(self.driver,60).until(EC.presence_of_element_located((By.XPATH,"//button[@class='btn btn-primary']"))).click()
+            time.sleep(5)     
+            self.driver.get_screenshot_as_file("screenshots/TestCase12_03_CheckLogin.png") 
         except NoSuchElementException as e:
             print (e)
             return False
